@@ -12,6 +12,10 @@ A simple weather app built with React.js and the OpenWeatherMap API.
 
 - React.js
 
+## Demo
+
+![Weather App Screenshot](./public/sample-weather.png)
+
 ## Installation
 
 1. Clone the repository:
