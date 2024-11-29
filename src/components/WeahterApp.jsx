@@ -12,7 +12,8 @@ const WeatherApp = () => {
   const [data, setData] = useState({});
   const [location, setLocation] = useState('');
   const [loading, setLoading] = useState(false);
-  const api_key = "";
+  const api_key = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
+
 
   const weatherImages = {
     Clear: sunny,
@@ -22,6 +23,7 @@ const WeatherApp = () => {
     Haze: cloudy,
     Mist: cloudy
   }
+
   const weatherImage = data.weather ? weatherImages[data.weather[0].main] : null;
 
   const backgroundImages = {
@@ -46,6 +48,7 @@ const WeatherApp = () => {
     const fetchDefaultWeather = async () => {
       setLoading(true);
       const defaultLocation = 'bengaluru';
+      const api_key = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&units=Metric&appid=${api_key}`;
       const res = await fetch(url);
       const defaultData = await res.json();
@@ -53,7 +56,7 @@ const WeatherApp = () => {
       setLoading(false);
     }
     fetchDefaultWeather();
-  }, [])
+  }, []);
 
   const search = async () => {
     if (location.trim() === '') return;
@@ -68,7 +71,6 @@ const WeatherApp = () => {
       setLocation('');
     }
     setLoading(false);
-    console.log(searchData);
   }
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') { search(); }
